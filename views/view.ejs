@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("./partials/head") %>
+    <title>ViewPage</title>
+    <link href="../uploads/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include("./partials/nav") %>
+
+
+    <div class="container mt-5 viewpage" style="min-height: 74.5vh;">
+
+
+      <img src="/<%= blog.Image %>" class="viewpageImage img-fluid mt-4">
+      <h2 class="mb-1 pt-3 fw-bold">
+        <%= blog.Title %>
+      </h2>
+      <img src="<%= blog.CreatedBy.ProfileImageUrl %>" height="40px" class="default-img">
+      <span class="ps-2 viewPageBlogerName">
+        <%= blog.CreatedBy.FullName %><i class="fa-solid fa-circle-check"></i>
+      </span>
+
+      <pre class="mt-3 viewPageDetails"> <%= blog.Body %> </pre>
+
+
+    </div>
+
+    <!-- <div class="container mt-3">
+      <img src="<%= blog.CreatedBy.ProfileImageUrl %>" height="60px" class="default-img">
+      <%= blog.CreatedBy.FullName %>
+    </div> -->
+
+    <div class="container">
+      <h2>Chat (<%= comments.length %>)
+      </h2>
+      <% if(locals.user){ %>
+        <form action="/comment/<%= blog._id %>" method="post">
+
+          <div class="mb-3">
+
+            <input type="text" class="form-control" id="content" name="content" placeholder="Enter Your Comment"
+              aria-describedby="emailHelp">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+        <% } %>
+
+
+          <div class="mt-3">
+            <% comments.forEach((comment)=> { %>
+              <div>
+                <img src="<%= comment.CreatedBy.ProfileImageUrl %>" width="40px" class="default-img">
+                <span class="fw-bold">
+                  <%= comment.CreatedBy.FullName %><i class="fa-solid fa-circle-check"></i>:
+                </span>
+                <pre class="mt-2 fw-bold commentContent"><%= comment.Content %></pre>
+              </div>
+              <% }) %>
+          </div>
+
+    </div>
+
+
+
+
+    <%- include("./partials/footer") %>
+      <%- include("./partials/script") %>
+</body>
+
+</html>

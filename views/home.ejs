@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("./partials/head") %>
+    <title>Evernote</title>
+    <link href="../uploads/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include("./partials/nav") %>
+
+    <!-- <div class="container mt-5 userData">
+      <div class="row mt-5">
+        <%= JSON.stringify(blogs) %>
+      </div>
+    </div> -->
+
+
+    <div class="container mt-5 headingContainer">
+      <div>
+        <h2 class="headingTag ">All The Tasks: </h2>
+      </div>
+    </div>
+
+    <div class="container mt-3 d-flex gap-5 flex-wrap justify-content-center mb-5" style="min-height: 74.5vh;">
+
+
+
+      <% blogs.forEach( (blog)=> { %>
+
+        <div class="card" style="width: 18rem;">
+          <img src="<%= blog.Image %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= blog.Title %>
+            </h4>
+            <p class="card-text fw-bold">
+              <%= blog.UserName %><i class="fa-solid fa-circle-check"></i>
+            </p>
+            <p class="card-text fw-bold">
+              <span class="labelColor"> Status : </span>
+              <%= blog.Status %>
+            </p>
+            <p class="card-text fw-bold">
+              <span class="labelColor"> DueDate : </span>
+              <%= blog.DueDate %>
+            </p>
+            <p class="card-text fw-bold">
+              <span class="labelColor"> Priority : </span>
+              <%= blog.Priority %>
+            </p>
+            <div class="threebtn d-flex gap-2">
+              <a href="/view/<%= blog._id %>" class="btn btn-dark">View</a>
+              <a href="/editData/<%= blog._id %>" class="btn btn-success">Edit</a>
+              <a href="/deleteData/<%= blog._id %>" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+
+
+    <%- include("./partials/footer") %>
+
+      <%- include("./partials/script") %>
+</body>
+
+</html>
